@@ -1,0 +1,8 @@
+.flex-div {
+  display: flex;
+}
+
+.Dashboard-container {
+  display: flex;
+  position: relative;
+}

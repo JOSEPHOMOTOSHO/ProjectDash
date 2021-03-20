@@ -1,0 +1,13 @@
+.leftContainer {
+  background-color: #595959;
+  min-height: 100vh;
+  display: flex;
+  padding: 0 70px;
+  align-items: center;
+  flex: 1;
+  color: #fff;
+}
+
+.leftContainer-title {
+  font-size: 96px;
+}

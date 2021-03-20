@@ -1,0 +1,22 @@
+.RightContainer {
+  flex: 1;
+  padding: 70px;
+}
+
+.RightContainer-title {
+  font-size: 60px;
+  margin-bottom: 5px;
+}
+
+.RightContainer-footer {
+  display: inline-flex;
+  color: #888;
+}
+.RightContainer-footer-text {
+  margin-right: 5px;
+}
+
+.RightContainer-footer-link {
+  font-weight: bold;
+  color: black;
+}

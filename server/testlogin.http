@@ -1,0 +1,13 @@
+POST http://localhost:4000/app/LoginSection
+ Content-Type: application/json
+
+ {
+    "Email":"Joseph.omotosho98@gmail.com",
+    "password":"chiwagonu"
+}
+
+
+
+#In the above we are trying to mimic a post request since we do not have a front end yet.
+#even if you do have a front end, you can mimic your request for testing sake
+# the link in front of the POST is called an endpoint, thats where the post request gets sent to

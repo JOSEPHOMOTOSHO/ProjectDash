@@ -1,0 +1,8 @@
+.Span {
+  display: flex;
+  margin-bottom: 30px;
+}
+.spantext {
+  font-weight: bold;
+  margin-left: 10px;
+}

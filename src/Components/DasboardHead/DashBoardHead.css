@@ -1,0 +1,81 @@
+.DashBoardHead-Container {
+  display: flex;
+  width: 85vw;
+  height: 13vh;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0px 0.2px 15px rgba(0, 0, 0, 0.5);
+ 
+}
+.DashBoardHead-Container-main-input {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.AiOutlineSearch {
+  height: 20px;
+  width: 20px;
+}
+
+.DashBoardHead-Container-input-input {
+  padding: 0 5px 0px 0px;
+  width: 228px;
+  border: none;
+  margin-left: 8px;
+  outline: none;
+}
+
+.DashBoardHead-Container-main-info {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.DashBoardHead-Container-Button {
+  display: flex;
+  width: 110px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.5px rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  margin-right: 30px;
+  color: #fff;
+  background-color: #c4c4c4;
+}
+
+.DashBoardHead-Container-Button-text {
+  margin-left: 5px;
+}
+
+.dash-bell {
+  margin-right: 30px;
+}
+
+.DashBoardHead-Container-info {
+  display: flex;
+  align-items: center;
+  margin-left: 0px;
+}
+
+.circle {
+  background-color: #c4c4c4;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.dropdown {
+  height: 30px;
+  width: 30px;
+  padding-top: 5px;
+}
+
+.DashBoardHead-Container-info-text {
+  font-weight: bold;
+}

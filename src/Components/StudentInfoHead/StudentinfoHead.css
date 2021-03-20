@@ -1,0 +1,43 @@
+.StudentinfoContainer{
+    background-color: white;
+    margin-top: 20px;
+    padding: 10px 0;
+    border-radius: 10px;
+    
+
+
+}
+.StudentinfoContainer-lists{
+    list-style: none;
+}
+
+.StudentinfoContainer-col{
+    display: flex;
+   justify-self: start;
+}
+
+.StudentinfoContainer-student{
+    margin-left: 30px;
+}
+
+.StudentinfoContainer-age{
+    margin-left: 77px;
+}
+
+.StudentinfoContainer-Gaurdianphone{
+    margin-left: 77px;
+}
+
+.StudentinfoContainer-Gaurdianmail{
+    margin-left: 77px;
+}
+.StudentinfoContainer-location{
+    margin-left: 125px;
+}
+.StudentinfoContainer-Status{
+    margin-left: 65px;
+}
+.StudentinfoContainer-icon{
+    margin-left: 110px;
+    margin-right: 30px;
+}

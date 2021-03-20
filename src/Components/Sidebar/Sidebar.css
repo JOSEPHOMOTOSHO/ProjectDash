@@ -1,0 +1,39 @@
+.Sidebar-Container {
+  width: 15vw;
+  min-height: 100vh;
+  background-color: #595959;
+  color: #fff;
+  position: relative;
+}
+
+.Sidebar-Container-lists {
+  position: absolute;
+  top: 200px;
+  left: 50px;
+  list-style: none;
+}
+
+.Sidebar-Container-lists li:nth-of-type(4) {
+  margin-top: 50px;
+}
+
+.Sidebar-Container-head {
+  margin-left: 24px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.Sidebar-Container-row {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.Sidebar-Container-icon {
+  margin-top: 25px;
+}
+
+.Sidebar-Container-title {
+  margin-left: 10px;
+  margin-top: 20px;
+}

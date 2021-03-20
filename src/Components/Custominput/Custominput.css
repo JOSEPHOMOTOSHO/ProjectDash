@@ -1,0 +1,27 @@
+.Custominput {
+  margin-bottom: 20px;
+}
+
+.Custominput-label {
+  display: block;
+  font-size: 18px;
+  color: #888;
+  margin: 10px 0;
+}
+
+.Custominput-input {
+  padding: 10px;
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.custominput-text {
+  display: flex;
+  justify-content: flex-end;
+  color: #888;
+  margin-top: 10px;
+}
+.custominput-error{
+  visibility: hidden;
+}
