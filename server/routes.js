@@ -1,6 +1,7 @@
 
 const express = require("express");
 const jwt = require('jsonwebtoken');//web tokken
+const authorization = require("./middleware/authentication")
 const router = express.Router();
 const signupTemplatecopy = require("./models/signupmodel");//importing our schema
 const bcrypt = require("bcrypt")//this guy is need for encrypting our password
@@ -28,7 +29,7 @@ router.post("/LoginSection",(request,response,next)=> {
                
             })
         }
-        let jwToken = jwt.sign({
+        let jwToken = jwt.sign({//
             Email: getUser.Email,
             UserId:getUser._id
         },"longer-secret-is-better",{
@@ -52,22 +53,23 @@ router.post("/LoginSection",(request,response,next)=> {
 router.post("/SignupSection",async(request,response) => {
     const salt = await bcrypt.genSalt(10);
     const securepassword = await bcrypt.hash(request.body.password, salt)
-    const secureconfirmpassword = await bcrypt.hash(request.body.confirmpassword, salt)
+  
 //check mail
 signupTemplatecopy.findOne({//findOne is a method provided by mongoose to find a "document" based on a condition. in this case the condition is the email
-        Email:request.body.Email
+        Email:request.body.Email.toLowerCase()
     }).then(user => {//user here is the document returned. this document will contain a whole other details apart from email
         if(user){
             // return response.status(404).json({
             //     message:"Cant find User"
             // })
+            console.log("user already exist")
             
         }else{
             const signedUpuser = new signupTemplatecopy({ //create a new schema and fill in the details of the schema with the user info
                 fullName: request.body.fullName,
-                Email: request.body.Email,
+                Email: request.body.Email.toLowerCase(),
                 password: securepassword,
-                confirmpassword: secureconfirmpassword 
+
             })
         signedUpuser.save()           //when we save the information check for errors or success and do the needful
         .then(data => {
@@ -82,6 +84,15 @@ signupTemplatecopy.findOne({//findOne is a method provided by mongoose to find a
     })
     
 
+})
+//testing auth middleware
+router.route("/all-user").get(authorization,(request,response) => {
+    signupTemplatecopy.find((err,res)=>{
+        if(err){
+            return next(err)
+        }
+        response.status(200).json(res)
+    })
 })
 
 

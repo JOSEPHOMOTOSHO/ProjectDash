@@ -35,7 +35,7 @@ const Loginform = () => {
   axios.post("http://localhost:4000/app/LoginSection", signIn)
   .then(response => console.log(response))
   .catch(err => {
-    console.log("Wrong Password")
+    console.log("Wrong Credentials")
   })
   
 
