@@ -13,24 +13,26 @@ router.post("/LoginSection",(request,response,next)=> {
         Email:request.body.Email
     }).then(user => {//user here is the document returned. this document will contain a whole other details apart from email
         if(!user){
-            return response.status(401).json({
-                message:"Authentication failed"
+            return response.status(404).json({
+                message:"Cant find User"
             })
         }
         getUser = user;
         return bcrypt.compare(request.body.password,user.password)// Load hash from your password DB and compare with the password typed during the login post request
-
-    }).then(res => {
+        //Anything returned here will be the data for the next "Then".
+    }).then(res => {// true or false will be the "res"
+        console.log(res)
         if(!res){
-            return response.status(401).json({
-                message:"Authentication jailed"
+            return response.status(400).json({
+                message:"wrong credentials"
+               
             })
         }
         let jwToken = jwt.sign({
             Email: getUser.Email,
             UserId:getUser._id
         },"longer-secret-is-better",{
-            expiry:"1h"
+            expiresIn:"1h"
         })
         response.status(200).json({
             token:jwToken,
@@ -48,26 +50,38 @@ router.post("/LoginSection",(request,response,next)=> {
 })
 //signup guy
 router.post("/SignupSection",async(request,response) => {
-
     const salt = await bcrypt.genSalt(10);
-    
     const securepassword = await bcrypt.hash(request.body.password, salt)
-    const secureconfirmpassword = await bcrypt.hash(request.body.confirmpassword, salt)
-
-    const signedUpuser = new signupTemplatecopy({ //create a new schema and fill in the details of the schema with the user info
-        fullName: request.body.fullName,
-        Email: request.body.Email,
-        password: securepassword,
-        confirmpassword: secureconfirmpassword 
-    })
-
-    signedUpuser.save()           //when we save the information check for errors or success and do the needful
-    .then(data => {
+//check mail
+signupTemplatecopy.findOne({//findOne is a method provided by mongoose to find a "document" based on a condition. in this case the condition is the email
+        Email:request.body.Email
+    }).then(user => {//user here is the document returned. this document will contain a whole other details apart from email
+        if(user){
+            console.log("user exists")
+            return response.status(404).json({
+                message:"Cant find User"
+            })
+            
+        }else{
+            const signedUpuser = new signupTemplatecopy({ //create a new schema and fill in the details of the schema with the user info
+                fullName: request.body.fullName,
+                Email: request.body.Email.toLowerCase(),
+                password: securepassword
+        
+            })
+        signedUpuser.save()           //when we save the information check for errors or success and do the needful
+        .then(data => {
         response.json(data)
     })
     .catch(error => {
         response.json(error)
     })
+
+        }
+
+    })
+    
+
 })
 
 

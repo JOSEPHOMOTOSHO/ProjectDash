@@ -33,7 +33,10 @@ const Loginform = () => {
   console.log(signupstate.Email,signupstate.password)
 
   axios.post("http://localhost:4000/app/LoginSection", signIn)
-  .then(response => console.log(response.data))
+  .then(response => console.log(response))
+  .catch(err => {
+    console.log("Wrong Password")
+  })
   
 
   // if( registered.password !==  registered.confirmpassword){
