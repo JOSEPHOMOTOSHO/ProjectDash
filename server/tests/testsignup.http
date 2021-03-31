@@ -1,0 +1,18 @@
+GET http://localhost:4000/app/all-user
+ Content-Type: application/json
+ x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6InVnb0BnbWFpbC5jb20iLCJVc2VySWQiOiI2MDU5YzQ3MjI3ZjljMTQ4ZWM0NTcyODEiLCJpYXQiOjE2MTY2NzIwNTMsImV4cCI6MTYxNjY3NTY1M30.qpEynZPAgLsdS9TfyohEtKpG5oCLPE0LQf3NyHQg2O8
+
+ {
+    "fuulName":"Ugo",
+    "Email":"ugo@gmaIl.com",
+    "password":"jas"
+   
+    
+}
+
+
+
+
+#In the above we are trying to mimic a post request since we do not have a front end yet.
+#even if you do have a front end, you can mimic your request for testing sake
+# the link in front of the POST is called an endpoint, thats where the post request gets sent to

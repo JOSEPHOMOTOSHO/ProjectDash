@@ -1,9 +1,9 @@
 
 const express = require("express");
 const jwt = require('jsonwebtoken');//web tokken
-const authorization = require("./middleware/authentication")
+const authorization = require("../middleware/Authorization")
 const router = express.Router();
-const signupTemplatecopy = require("./models/signupmodel");//importing our schema
+const signupTemplatecopy = require("../models/signupmodel");//importing our schema
 const bcrypt = require("bcrypt")//this guy is need for encrypting our password
 
 
@@ -11,7 +11,7 @@ const bcrypt = require("bcrypt")//this guy is need for encrypting our password
 router.post("/LoginSection",(request,response,next)=> {
     let getUser;
     signupTemplatecopy.findOne({//findOne is a method provided by mongoose to find a "document" based on a condition. in this case the condition is the email
-        Email:request.body.Email
+        Email:request.body.Email.toLowerCase()
     }).then(user => {//user here is the document returned. this document will contain a whole other details apart from email
         if(!user){
             return response.status(404).json({
@@ -59,10 +59,11 @@ signupTemplatecopy.findOne({//findOne is a method provided by mongoose to find a
         Email:request.body.Email.toLowerCase()
     }).then(user => {//user here is the document returned. this document will contain a whole other details apart from email
         if(user){
-            // return response.status(404).json({
-            //     message:"Cant find User"
-            // })
             console.log("user already exist")
+            return response.status(404).json({
+                message:"User Already exists"
+            })
+            
             
         }else{
             const signedUpuser = new signupTemplatecopy({ //create a new schema and fill in the details of the schema with the user info
@@ -86,7 +87,7 @@ signupTemplatecopy.findOne({//findOne is a method provided by mongoose to find a
 
 })
 //testing auth middleware
-router.route("/all-user").get(authorization,(request,response) => {
+router.get("/all-user",authorization,(request,response) => {
     signupTemplatecopy.find((err,res)=>{
         if(err){
             return next(err)

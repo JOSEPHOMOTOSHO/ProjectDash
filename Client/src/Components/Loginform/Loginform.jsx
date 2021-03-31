@@ -2,9 +2,11 @@ import React,{useState} from "react"
 import Custominput from "../Custominput/Custominput";
 import Button from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
-import axios from "axios";
+import {connect} from "react-redux";
+import {login} from "./../../Actions/action.auth"
+// import axios from "axios";
 
-const Loginform = () => {
+const Loginform = ({login}) => {
   const [signupstate, setsignupstate] = useState({
     Email:'',
     password:''
@@ -26,18 +28,19 @@ const Loginform = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-  const signIn= {
-    Email:signupstate.Email,
-    password:signupstate.password,
-  }
+    login(signupstate.Email,signupstate.password)
+  // const signIn= {
+  //   Email:signupstate.Email,
+  //   password:signupstate.password,
+  // }
   console.log(signupstate.Email,signupstate.password)
 
-  axios.post("http://localhost:4000/app/LoginSection", signIn)
-  .then(response => console.log(response))
-  .catch(err => {
-    console.log("Wrong Credentials")
-  })
-  
+  // axios.post("http://localhost:4000/app/LoginSection", signIn)
+  // .then(response => console.log(response))
+  // .catch(err => {
+  //   console.log("Wrong Credentials")
+  // }
+     
 
   // if( registered.password !==  registered.confirmpassword){
   //   alert("please confirm your password")
@@ -76,4 +79,4 @@ const Loginform = () => {
   );
 };
 
-export default Loginform;
+export default connect(null,{login})(Loginform);
