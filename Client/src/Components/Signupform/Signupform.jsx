@@ -1,9 +1,12 @@
 import React, {useState} from "react"
 import Custominput from "../Custominput/Custominput";
 import Button from "../Button/Button";
-import axios from "axios";
+import {signup} from "./../../Actions/action.auth";
+import {connect} from "react-redux";
 
-const Signupform = () => {
+
+
+const Signupform = ({signup}) => {
 
   const [signupstate, setsignupstate] = useState({
     fullName:'',
@@ -46,21 +49,24 @@ const Signupform = () => {
   const onSubmit = (e) => {
 
       e.preventDefault()
-    const registered = {
-      fullName:signupstate.fullName,
-      Email:signupstate.Email,
-      password:signupstate.password,
-      confirmpassword:signupstate.confirmpassword
 
-    }
+      
+    // const registered = {
+    //   fullName:signupstate.fullName,
+    //   Email:signupstate.Email,
+    //   password:signupstate.password,
+    //   confirmpassword:signupstate.confirmpassword
+
+    // }
     console.log(signupstate.fullName,signupstate.Email,signupstate.password,signupstate.confirmpassword)
 
-    if( registered.password !==  registered.confirmpassword){
+    if( signupstate.password !==  signupstate.confirmpassword){
       alert("please confirm your password")
       console.log("password no correct")
     }else{
-      axios.post("http://localhost:4000/app/SignupSection", registered)
-      .then(response => console.log(response.data))
+      signup(signupstate.fullName,signupstate.Email,signupstate.password)
+      // axios.post("http://localhost:4000/app/SignupSection", registered)
+      // .then(response => console.log(response.data))
     }
    
 
@@ -115,4 +121,4 @@ const Signupform = () => {
   );
 };
 
-export default Signupform;
+export default connect(null,{signup})(Signupform);;
